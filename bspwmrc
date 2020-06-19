@@ -1,0 +1,44 @@
+#! /bin/sh
+
+sxhkd &
+wal -i /home/yazdan/Pictures/melan.jpg &
+synclient TapButton1=1 TapButton2=3 TapButton3=2 & #For laptop touchpad
+xset -b & #For annoying beeping sounds
+volumeicon &
+conky &
+nm-applet &
+pulseaudio &
+bspc monitor -d I II III IV V VI VII VIII IX X
+$HOME/.config/polybar/launch.sh &
+$HOME/.config/bspwm/low_power_alarm_copy.py
+
+#killall polybar
+
+bspc config border_width        5
+bspc config window_gap          15
+
+bspc config split_ratio          0.52
+bspc config top_padding 	 24
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+#Focus on pointer
+bspc config focus_follows_pointer true
+bspc config pointer_follows_focus true
+
+bspc rule -a Zathura state=tiled
+
+dropdownname="dropdown"
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a chromium-browser desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+bspc rule -a Firefox desktop=^2 follow=on
+
+bspc config external_rules_command "$(which floaters)"
+
+
+
+
